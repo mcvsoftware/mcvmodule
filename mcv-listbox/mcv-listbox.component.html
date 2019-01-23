@@ -1,0 +1,7 @@
+<div>
+  <span class="clsListItem" 
+    [ngClass]="{ 'clsListItemSelected':(item === selected) }" 
+    *ngFor="let item of aItems"
+    (click)="onItemSelect(item)"
+    >{{item.description}}</span>
+</div>

@@ -37,7 +37,8 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatFormField
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient, HttpHandler } from '@angular/common/http';
@@ -48,9 +49,13 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import 'hammerjs';
 import { LoadingComponent } from './loading/loading.component';
 import { ShadowScreenComponent } from './shadow-screen/shadow-screen.component';
+import { FormsModule } from '@angular/forms';
+import { McvListboxComponent } from './mcv-listbox/mcv-listbox.component';
+import { McvCircularIndicatorComponent } from './mcv-circular-indicator/mcv-circular-indicator.component';
 
 @NgModule({
   imports: [
+    FormsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
     CommonModule,
@@ -94,7 +99,7 @@ import { ShadowScreenComponent } from './shadow-screen/shadow-screen.component';
     MatTooltipModule,
     MatFormFieldModule
   ],
-  declarations: [MessagesComponent, LoadingComponent, ShadowScreenComponent],
+  declarations: [MessagesComponent, LoadingComponent, ShadowScreenComponent, McvListboxComponent, McvCircularIndicatorComponent],
   providers: [
     HttpClient,
     ApiService,
@@ -102,6 +107,7 @@ import { ShadowScreenComponent } from './shadow-screen/shadow-screen.component';
     { provide: APP_INITIALIZER, useFactory: init_app, deps: [ApiService], multi: true },
   ],
   exports: [
+    FormsModule,
     AngularFontAwesomeModule,
     MessagesComponent,
     LoadingComponent,
@@ -110,7 +116,15 @@ import { ShadowScreenComponent } from './shadow-screen/shadow-screen.component';
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
-    MatTooltipModule
+    MatIconModule,
+    MatListModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatSelectModule,
+    McvListboxComponent,
+    McvCircularIndicatorComponent
   ]
 })
 export class McvModule { }

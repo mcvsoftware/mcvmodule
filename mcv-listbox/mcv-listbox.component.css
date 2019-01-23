@@ -1,0 +1,36 @@
+.clsItemsList {
+    width: 100%;
+}
+
+.clsListItem:hover {
+    background: linear-gradient(#eee, #ddd);
+    transition: 250ms all linear;
+    border-bottom: 0px red;
+}
+
+.clsListItem {
+    display: block;
+    height: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 12px;
+    background: linear-gradient(#fff, #eee);
+    cursor: pointer;
+    padding-left: 5px;
+    padding-top: 5px;
+    transition: 250ms all linear;
+    border-bottom: 0px #00f;
+}
+
+.clsListItemSelected:hover {
+    transition: 250ms all linear;
+    background: linear-gradient(#48f, #027);
+    border-bottom: 2px #00f;
+}
+
+.clsListItemSelected {
+    transition: 250ms all linear;
+    background: linear-gradient(#aaf, #00f);
+    border-bottom: 2px #00f;
+    color: white;
+    text-shadow: 0px 0px 1px;
+}

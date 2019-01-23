@@ -1,4 +1,4 @@
-<shadow-screen [visible]="appService.aMessages.length > 0 || appService.nLoading > 0"></shadow-screen>
+<shadow-screen [visible]="appService.aMessages.length > 0 || appService.nLoading > 0 || appService.shadowVisible"></shadow-screen>
 <div *ngIf="appService.aMessages.length > 0">
     <div class="clsAlertBox">
         <div class="clsAlertTitle">{{apiService?.config.appTitle}}</div>
@@ -13,4 +13,7 @@
 </div>
 <div *ngIf="appService.nLoading > 0" class="clsImgLoading">
     <img src="./assets/loading2.gif" width="150" />
+    <div *ngIf="appService.loadingMessage !== ''" style="color: white; font-size: 16px; font-weight: bold;">
+        {{appService.loadingMessage}}
+    </div>
 </div>

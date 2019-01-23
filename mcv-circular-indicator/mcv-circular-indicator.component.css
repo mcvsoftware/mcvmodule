@@ -1,0 +1,31 @@
+circle {
+    fill: #bbb;
+    stroke: #cf0;
+    stroke-width: 10;
+    stroke-dasharray: 0 158;
+    animation: fillup 5s linear infinite;
+}
+
+svg {
+    border: 1px solid #aaa;
+    width: 50px; height: 50px;
+    transform: rotate(-90deg);
+    background: #fff;
+    border-radius: 50%;
+}
+
+.clsLabel {
+    position: relative;
+    top: -48px;
+    left: 8px;
+    font-size: 13px;
+    background-color: white;
+    width: 35px;
+    text-align: center;
+    height: 25px;
+    padding-top: 9px;
+    border-radius: 50%;
+    -webkit-box-shadow: 1px 1px 3px inset;
+    box-shadow: 1px 1px 3px inset;
+    font-weight: bold;
+}

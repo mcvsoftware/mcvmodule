@@ -8,6 +8,8 @@ export class AppService {
   public aMessages: Array<string> = [];
   public alertCancelButton = false;
   public nLoading = 0;
+  public shadowVisible = false;
+  public loadingMessage = '';
   public alertResult = new Subject<alertResults>();
   public get userData() {
     const data = localStorage.getItem('userData');
@@ -20,12 +22,17 @@ export class AppService {
   constructor() {
   }
 
-  beginLoading() {
+  beginLoading(msg: string = '') {
+    this.loadingMessage = msg;
     this.nLoading++;
   }
 
   endLoading() {
+    this.loadingMessage = '';
     this.nLoading--;
+    if (this.nLoading < 0) {
+      this.nLoading = 0;
+    }
   }
 
   alert(msg: string, nextObserver?: NextObserver<alertResults>, cancelbutton: boolean = false): Subscription {
