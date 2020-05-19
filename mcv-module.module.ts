@@ -4,6 +4,8 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { AngularDraggableModule } from 'angular2-draggable';
+
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -97,7 +99,8 @@ import { McvCircularIndicatorComponent } from './mcv-circular-indicator/mcv-circ
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    AngularDraggableModule
   ],
   declarations: [MessagesComponent, LoadingComponent, ShadowScreenComponent, McvListboxComponent, McvCircularIndicatorComponent],
   providers: [
@@ -123,8 +126,10 @@ import { McvCircularIndicatorComponent } from './mcv-circular-indicator/mcv-circ
     MatDatepickerModule,
     MatInputModule,
     MatSelectModule,
+    MatCheckboxModule,
     McvListboxComponent,
-    McvCircularIndicatorComponent
+    McvCircularIndicatorComponent,
+    AngularDraggableModule
   ]
 })
 export class McvModule { }

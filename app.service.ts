@@ -12,11 +12,18 @@ export class AppService {
   public loadingMessage = '';
   public alertResult = new Subject<alertResults>();
   public get userData() {
-    const data = localStorage.getItem('userData');
+    const data64 = localStorage.getItem('mtcUserData');
+    if (data64 === null) {
+      return null;
+    }
+
+    const data = atob(data64);
     return JSON.parse(data);
   }
+
   public set userData(value) {
-    localStorage.setItem('userData', JSON.stringify(value));
+    const data64 = JSON.stringify(value);
+    localStorage.setItem('mtcUserData',  btoa(data64) );
   }
 
   constructor() {
@@ -48,6 +55,25 @@ export class AppService {
     this.aMessages = [];
     this.alertResult.next(nResult);
     this.alertResult.observers = [];
+  }
+
+  leading(value: any, count: number = 2, character: string = '0') {
+    let r = '';
+    for (let i = 0; i < count; i++) { r += character; }
+    r += value;
+    r = r.substr(r.length - count);
+    return r;
+  }
+
+  toHms(elapsed: number, unitOfTime: string = 'seconds') {
+    let r = '';
+    if (unitOfTime === 'seconds') {
+      const hours = Math.floor(elapsed / 3600);
+      const minutes = Math.floor(elapsed / 60);
+      const seconds = elapsed - (hours * 3600) - (minutes * 60);
+      r = this.leading(hours) + ':' + this.leading(minutes) + ':' + this.leading(seconds);
+      return r;
+    }
   }
 }
 

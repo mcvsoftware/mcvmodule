@@ -15,15 +15,26 @@ export class ApiService {
   public user: any = {};
 
   private httpOptions = {
-    headers: new HttpHeaders({
-      // 'Content-Type':  'multipart/form-data; boundary="xxxxasfaSFASDF"' 
-      /*,
+    headers: new HttpHeaders( {
+      'token': this.getToken(),
+      /*
+      'Content-Type':  'multipart/form-data; boundary="xxxxasfaSFASDF"'
+      ,
       'Authorization': 'cat' */
-    })
+    } )
   };
 
   constructor(private http: HttpClient,
               private appService: AppService) {
+  }
+
+  getToken(): string {
+    let token = '';
+    const data = this.appService.userData;
+    if (data && data.session) {
+      token = data.session.token;
+    }
+    return token;
   }
 
   isConfigLoaded() {
@@ -49,14 +60,31 @@ export class ApiService {
     return this.configSubscription;
   }
 
+  refreshToken() {
+    const token = this.getToken();
+    console.log(token);
+    this.httpOptions.headers = new HttpHeaders( {
+      'token': token
+    } );
+  }
+
   Post(controller: string, data: any) {
+    this.refreshToken();
     return this.http.post(this.config.api + controller, data, this.httpOptions);
+  }
+
+  PostGis(controller: string, data: any) {
+    this.refreshToken();
+    return this.http.post(this.config.api_gis + controller, data, this.httpOptions);
   }
 
   logUser(username: string, userpass: string /** MD5 */) {
     const pm = Md5.hashAsciiStr(userpass).toString().toUpperCase();
-    const subscription = this.Post('user.php', 'w=' + btoa('logUser')
-      + '&q=' + btoa('{ "u":"' + username + '", "p":"' + pm + '"}'));
+    const data = {
+      w: btoa('logUser'),
+      q: btoa('{ "u":"' + username + '", "p":"' + pm + '"}')
+    };
+    const subscription = this.Post('user.php', data);
     return subscription;
   }
 
